@@ -24,7 +24,7 @@ public class ContenedorController {
     }
 
     @GetMapping("/contenedores/{id}")
-    public ContenedorDTO getContenedorById(@PathVariable Long id) {
+    public ContenedorDTO getContenedorById(@PathVariable String id) {
         return contenedorService.findById(id);
     }
 }

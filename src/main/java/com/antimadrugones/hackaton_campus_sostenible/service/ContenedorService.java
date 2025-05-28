@@ -9,5 +9,5 @@ import java.util.List;
 public interface ContenedorService {
     List<ContenedorDTO> findAll();
     ContenedorDTO save(ContenedorDTO contenedor);
-    ContenedorDTO findById(Long id);
+    ContenedorDTO findById(String id);
 }

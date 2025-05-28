@@ -9,16 +9,20 @@ import org.springframework.stereotype.Service;
 import java.util.List;
 
 @Service
-public class DbContenedorService implements ContenedorService {
+public class ContenedorServiceImpl implements ContenedorService {
     private final ContenedorRepository repository;
 
     @Autowired
-    public DbContenedorService(ContenedorRepository repository) {
+    public ContenedorServiceImpl(ContenedorRepository repository) {
         this.repository = repository;
     }
 
     @Override
     public List<ContenedorDTO> findAll() {
+        System.out.println(
+                ContenedorMapper.INSTANCE.toDTO(repository.findById("CONT-001").get())
+                        .getCenter()
+        );
         return repository.findAll().stream()
                 .map(ContenedorMapper.INSTANCE::toDTO)
                 .toList();
@@ -33,7 +37,7 @@ public class DbContenedorService implements ContenedorService {
     }
 
     @Override
-    public ContenedorDTO findById(Long id) {
+    public ContenedorDTO findById(String id) {
         return repository.findById(id)
                 .map(ContenedorMapper.INSTANCE::toDTO)
                 .orElse(ContenedorDTO.builder().build());

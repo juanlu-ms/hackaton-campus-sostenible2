@@ -6,7 +6,7 @@ import com.antimadrugones.hackaton_campus_sostenible.model.Contenedor;
 import org.mapstruct.Mapper;
 import org.mapstruct.factory.Mappers;
 
-@Mapper
+@Mapper(componentModel = "spring")
 public interface ContenedorMapper {
 
     ContenedorMapper INSTANCE = Mappers.getMapper(ContenedorMapper.class);

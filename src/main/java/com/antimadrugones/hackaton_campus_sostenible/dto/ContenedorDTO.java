@@ -18,5 +18,4 @@ public class ContenedorDTO {
     private Double longitude;
     private int capacity;
     private String unit;
-    private int fillLevel;
 }
