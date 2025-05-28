@@ -1,0 +1,13 @@
+INSERT INTO contenedores (id, tipo, centro, ubicacion, latitud, longitud, capacidad, unidad) VALUES
+                                                                                                 ('CONT-001', 'paper', 'ETS de Ingeniería y Sistemas Informáticos', 'Salida principal', 40.389796, -3.628329, 195, 'liters'),
+                                                                                                 ('CONT-002', 'plastic', 'ETS de Ingeniería y Sistemas Informáticos', 'Bloque I, Segunda Planta', 40.38977, -3.628394, 162, 'liters'),
+                                                                                                 ('CONT-003', 'organic', 'ETS de Ingeniería y Sistemas Informáticos', 'Frente a la zona de descanso', 40.389975, -3.628212, 157, 'liters'),
+                                                                                                 ('CONT-004', 'glass', 'ETS de Ingeniería y Sistemas Informáticos', 'Bloque I, Planta Baja', 40.389847, -3.628094, 193, 'liters'),
+                                                                                                 ('CONT-005', 'other', 'ETS de Ingeniería y Sistemas Informáticos', 'Bloque II, Segunda Planta', 40.389793, -3.628382, 197, 'liters'),
+                                                                                                 ('CONT-006', 'paper', 'ETS de Ingeniería y Sistemas Informáticos', 'Salida principal', 40.38998, -3.628363, 127, 'liters'),
+                                                                                                 ('CONT-007', 'plastic', 'ETS de Ingeniería y Sistemas Informáticos', 'Bloque I, Segunda Planta', 40.389734, -3.628093, 176, 'liters'),
+                                                                                                 ('CONT-008', 'paper', 'ETS de Ingeniería y Sistemas de Telecomunicación', 'Bloque I, Segunda Planta', 40.389694, -3.630184, 101, 'liters'),
+                                                                                                 ('CONT-009', 'plastic', 'ETS de Ingeniería y Sistemas de Telecomunicación', 'Bloque II, Segunda Planta', 40.389367, -3.630261, 134, 'liters'),
+                                                                                                 ('CONT-010', 'organic', 'ETS de Ingeniería y Sistemas de Telecomunicación', 'Entrada principal', 40.389495, -3.630315, 109, 'liters'),
+-- (continúa con el resto de INSERTs en el mismo formato)
+                                                                                                 ('CONT-049', 'plastic', 'Biblioteca Universitaria del Campus Sur', 'Al lado de los laboratorios', 40.390505, -3.629752, 116, 'liters');

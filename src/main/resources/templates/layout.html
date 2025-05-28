@@ -5,7 +5,8 @@
     <title th:text="${pageTitle}"><< Campus Sostenible ETSISI >></title>
 
     <!-- Google Fonts -->
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600&family=Roboto&display=swap"
+          rel="stylesheet">
 
     <!-- Bootstrap 5 (CDN) -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
@@ -19,33 +20,51 @@
 <body>
 
 <!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-success shadow-sm">
+<nav class="navbar navbar-expand-lg navbar-dark bg-success sticky-top shadow-sm bg-success">
     <div class="container">
         <a class="navbar-brand d-flex align-items-center" th:href="@{/}">
             <i class="fas fa-leaf me-2 fs-4"></i>
             <span class="fw-bold">Campus Sostenible</span>
         </a>
-        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#mainNav">
-            <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="mainNav">
-            <ul class="navbar-nav ms-auto">
-                <li class="nav-item"><a class="nav-link px-3" th:href="@{/dashboard}">Dashboard</a></li>
-                <li class="nav-item"><a class="nav-link px-3" th:href="@{/contenedores}">Contenedores</a></li>
-            </ul>
-        </div>
+<!--        &lt;!&ndash; Añadimos los atributos aria necesarios &ndash;&gt;-->
+<!--        <button-->
+<!--                class="navbar-toggler"-->
+<!--                type="button"-->
+<!--                data-bs-toggle="collapse"-->
+<!--                data-bs-target="#mainNav"-->
+<!--                aria-controls="mainNav"-->
+<!--                aria-expanded="false"-->
+<!--                aria-label="Toggle navigation"-->
+<!--        >-->
+<!--            <span class="navbar-toggler-icon"></span>-->
+<!--        </button>-->
+<!--        <div class="collapse navbar-collapse" id="mainNav">-->
+<!--            <ul class="navbar-nav ms-auto">-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link px-3" th:href="@{/dashboard}">Dashboard</a>-->
+<!--                </li>-->
+<!--                <li class="nav-item">-->
+<!--                    <a class="nav-link px-3" th:href="@{/contenedores}">Contenedores</a>-->
+<!--                </li>-->
+<!--            </ul>-->
+<!--        </div>-->
     </div>
 </nav>
+
 
 <!-- Contenido principal -->
 <main class="container my-5">
     <div th:replace="~{${content}}"></div>
 </main>
 
-<!-- Footer -->
-<footer class="bg-light text-center py-3 border-top">
-    <small>&copy; 2025 Campus Sostenible ETSISI. Todos los derechos reservados.</small>
+<!-- Footer / Créditos -->
+<footer class="py-4 text-center text-gray-300 text-sm">
+    <p>© 2025 Campus Sostenible ETSISI. Todos los derechos reservados.</p>
+    <p>
+        Desarrollado por el equipo de <a href="https://etsisi.upm.es" class="underline hover:text-white">ETSISI-UPM</a>
+    </p>
 </footer>
+
 
 <!-- Scripts -->
 <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
