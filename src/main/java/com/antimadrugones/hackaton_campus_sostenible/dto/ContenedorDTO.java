@@ -10,9 +10,13 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class ContenedorDTO {
-    private Long id;
-    private String ubicacion;
-    private String tipo;
-    private int nivel;
-    private String ultimoVaciado;
+    private String id;
+    private String type;
+    private String center;
+    private String location;
+    private Double latitude;
+    private Double longitude;
+    private int capacity;
+    private String unit;
+    private int fillLevel;
 }

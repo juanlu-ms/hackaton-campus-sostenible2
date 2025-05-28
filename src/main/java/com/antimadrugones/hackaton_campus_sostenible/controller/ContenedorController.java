@@ -23,11 +23,6 @@ public class ContenedorController {
         return contenedorService.findAll();
     }
 
-    @PostMapping("/contenedores")
-    public ContenedorDTO createContenedor(@RequestBody ContenedorDTO contenedor) {
-        return contenedorService.save(contenedor);
-    }
-
     @GetMapping("/contenedores/{id}")
     public ContenedorDTO getContenedorById(@PathVariable Long id) {
         return contenedorService.findById(id);
