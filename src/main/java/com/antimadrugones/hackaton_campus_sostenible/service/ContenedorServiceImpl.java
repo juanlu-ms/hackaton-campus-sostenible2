@@ -19,10 +19,6 @@ public class ContenedorServiceImpl implements ContenedorService {
 
     @Override
     public List<ContenedorDTO> findAll() {
-        System.out.println(
-                ContenedorMapper.INSTANCE.toDTO(repository.findById("CONT-001").get())
-                        .getCenter()
-        );
         return repository.findAll().stream()
                 .map(ContenedorMapper.INSTANCE::toDTO)
                 .toList();
