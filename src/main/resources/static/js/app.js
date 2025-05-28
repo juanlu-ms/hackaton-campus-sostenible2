@@ -67,7 +67,7 @@ function cargarDatos() {
                 {id: 3, ubicacion: 'Aula A', tipo: 'Plástico', nivel: 72, ultimo_vaciado: '2023-10-01'},
                 {id: 4, ubicacion: 'Gimnasio', tipo: 'General', nivel: 45, ultimo_vaciado: '2023-10-01'},
                 {id: 5, ubicacion: 'Parking', tipo: 'Vidrio', nivel: 23, ultimo_vaciado: '2023-10-01'}
-            ];;
+            ];
             actualizarDashboard();
         });
 }
