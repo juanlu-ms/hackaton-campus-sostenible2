@@ -1,3 +1,5 @@
+# Repo erroneo
+
 # Reto: Campus Sostenible – Aplicación Web para la Gestión Sostenible de Residuos
 **Objetivo**: Desarrollar una aplicación web que permita visualizar, analizar y gestionar el estado de los contenedores inteligentes del campus, con el fin de optimizar la recogida de residuos y contribuir a una gestión más sostenible.
 
