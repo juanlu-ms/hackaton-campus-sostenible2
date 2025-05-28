@@ -4,8 +4,13 @@ let estadoChart = null;
 
 // Inicializar al cargar la página
 $(document).ready(function () {
-    console.log('Iniciando Campus Sostenible...');
-    inicializarDashboard();
+    if ($('#estadoChart').length > 0) {
+        inicializarDashboard();
+    }
+
+    if ($('#tabla-historial-contenedores').length > 0) {
+        cargarDatos(); // Esto ya llama a mostrarHistorialContenedores() internamente si aplica
+    }
 });
 
 // Función principal de inicialización
@@ -14,73 +19,39 @@ function inicializarDashboard() {
     crearGrafico();
 }
 
-// function cargarDatos() {
-//     // Remove the fetch for now
-//     contenedoresData = [
-//         {id: 1, ubicacion: 'Biblioteca', tipo: 'Papel', nivel: 95},
-//         {id: 2, ubicacion: 'Cafetería', tipo: 'Orgánico', nivel: 87},
-//         {id: 3, ubicacion: 'Aula A', tipo: 'Plástico', nivel: 72},
-//         {id: 4, ubicacion: 'Gimnasio', tipo: 'General', nivel: 45},
-//         {id: 5, ubicacion: 'Parking', tipo: 'Vidrio', nivel: 23}
-//     ];
-//     actualizarDashboard();
-// }
-
-// Cargar datos (simulados para desarrollo)
-// function cargarDatos() {
-//     fetch('/api/contenedores')
-//         .then(response => {
-//             if (!response.ok) {
-//                 throw new Error('Error al obtener los datos');
-//             }
-//             return response.json();
-//         })
-//         .then(data => {
-//             contenedoresData = [
-//                 {id: 1, ubicacion: 'Biblioteca', tipo: 'Papel', nivel: 95},
-//                 {id: 2, ubicacion: 'Cafetería', tipo: 'Orgánico', nivel: 87},
-//                 {id: 3, ubicacion: 'Aula A', tipo: 'Plástico', nivel: 72},
-//                 {id: 4, ubicacion: 'Gimnasio', tipo: 'General', nivel: 45},
-//                 {id: 5, ubicacion: 'Parking', tipo: 'Vidrio', nivel: 23}
-//             ];
-//             // contenedoresData = data; // Asigna los datos reales
-//             actualizarDashboard();  // Actualiza el dashboard con los datos reales
-//         })
-//         .catch(error => {
-//             console.error('Error:', error);
-//         });
-// }
-
 function cargarDatos() {
     fetch('/api/contenedores')
         .then(response => response.json())
         .then(data => {
             contenedoresData = data;
             actualizarDashboard();
+
+            if ($('#tabla-historial-contenedores').length > 0) {
+                mostrarHistorialContenedores();
+            }
         })
         .catch(error => {
             console.error('Error:', error);
-            // Fallback a datos simulados
-            contenedoresData = [
-                {id: 1, ubicacion: 'Biblioteca', tipo: 'Papel', nivel: 95, ultimo_vaciado: '2023-10-01'},
-                {id: 2, ubicacion: 'Cafetería', tipo: 'Orgánico', nivel: 87, ultimo_vaciado: '2023-10-01'},
-                {id: 3, ubicacion: 'Aula A', tipo: 'Plástico', nivel: 72, ultimo_vaciado: '2023-10-01'},
-                {id: 4, ubicacion: 'Gimnasio', tipo: 'General', nivel: 45, ultimo_vaciado: '2023-10-01'},
-                {id: 5, ubicacion: 'Parking', tipo: 'Vidrio', nivel: 23, ultimo_vaciado: '2023-10-01'}
-            ];;
             actualizarDashboard();
         });
 }
 
+
 // Crear gráfico de dona
 function crearGrafico() {
-    const ctx = document.getElementById('estadoChart').getContext('2d');
+    const canvas = document.getElementById('estadoChart');
+    if (!canvas) {
+        console.warn('No se encontró el canvas #estadoChart. Saltando gráfico.');
+        return;
+    }
+
+    const ctx = canvas.getContext('2d');
     estadoChart = new Chart(ctx, {
         type: 'doughnut',
         data: {
             labels: ['Crítico', 'Medio', 'Bajo'],
             datasets: [{
-                data: [33, 33, 33],
+                data: [0, 0, 0],
                 backgroundColor: ['#dc3545', '#ffc107', '#28a745']
             }]
         },
@@ -95,32 +66,6 @@ function crearGrafico() {
         }
     });
 }
-
-// // src/main/resources/static/js/app.js
-// document.addEventListener("DOMContentLoaded", function () {
-//     const ctx = document.getElementById("estadoChart").getContext("2d");
-//     estadoChart = new Chart(ctx, {
-//         type: "doughnut", // Tipo de gráfico (puede ser 'line', 'pie', 'bar', etc.)
-//         data: {
-//             labels: ["Llenos", "Medio", "Vacíos"],
-//             datasets: [{
-//                 label: "Estado de Contenedores",
-//                 data: [10, 20, 30], // Datos de ejemplo
-//                 backgroundColor: ["#dc3545", "#ffc107", "#28a745"]
-//             }]
-//         },
-//         options: {
-//             responsive: false,
-//             maintainAspectRatio: false,
-//             plugins: {
-//                 legend: {
-//                     position: "top"
-//                 }
-//             }
-//         }
-//     });
-// });
-
 
 // Actualizar dashboard completo
 function actualizarDashboard() {
@@ -218,4 +163,29 @@ function actualizarDatos() {
     // Aquí harías fetch al backend
     // fetch('/api/contenedores')...
     cargarDatos(); // Por ahora recarga los datos simulados
+}
+
+function mostrarHistorialContenedores() {
+    const tbody = $('#tabla-historial-contenedores tbody');
+    tbody.empty();
+
+    contenedoresData.forEach(contenedor => {
+        if (!contenedor.historial || contenedor.historial.length === 0) return;
+
+        contenedor.historial.forEach(h => {
+            const fecha = new Date(h.timestamp);
+            const fila = `
+                <tr>
+                    <td>${contenedor.id}</td>
+                    <td>${contenedor.center} - ${contenedor.location}</td>
+                    <td>${contenedor.type}</td>
+                    <td>${contenedor.capacity}</td>
+                    <td>${h.level}%</td>
+                    <td>${fecha.toLocaleDateString()}</td>
+                    <td>${fecha.toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })}</td>
+                </tr>
+            `;
+            tbody.append(fila);
+        });
+    });
 }
