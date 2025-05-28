@@ -1,0 +1,47 @@
+/* style.css */
+
+/* 1. Variables de color y tipografía */
+:root {
+    --color-bg: #f8fafc;
+    --color-primary: #28a745;
+    --color-secondary: #ffffff;
+    --font-heading: 'Montserrat', sans-serif;
+    --font-body: 'Roboto', sans-serif;
+}
+
+body {
+    font-family: var(--font-body);
+    background-color: var(--color-bg);
+    color: #333;
+    line-height: 1.6;
+}
+
+/*!* 5. Card genérica para contenedores de contenido *!*/
+/*.card-custom {*/
+/*    background: var(--color-secondary);*/
+/*    border-radius: 0.5rem;*/
+/*    box-shadow: 0 4px 8px rgba(0,0,0,0.05);*/
+/*    padding: 1.5rem;*/
+/*    margin-bottom: 2rem;*/
+/*    transition: transform 0.2s, box-shadow 0.2s;*/
+/*}*/
+/*.card-custom:hover {*/
+/*    transform: translateY(-5px);*/
+/*    box-shadow: 0 8px 16px rgba(0,0,0,0.1);*/
+/*}*/
+
+/* 6. Encabezados */
+h1, h2, h3, h4, h5 {
+    font-family: var(--font-heading);
+    margin-bottom: 1rem;
+    text-align: center;
+}
+
+/* 7. Enlaces generales */
+a {
+    text-decoration: none;
+    color: var(--color-primary);
+    transition: color 0.2s;
+}
+
+
